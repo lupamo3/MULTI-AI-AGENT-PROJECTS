@@ -18,7 +18,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy rest of the app
 COPY . .
 
+# Make sure /app is on PYTHONPATH
+ENV PYTHONPATH=/app
+
 EXPOSE 8501
 EXPOSE 9999
 
-CMD ["python", "app/main.py"]
+# 👇 Run as a package
+CMD ["python", "-m", "app.main"]
